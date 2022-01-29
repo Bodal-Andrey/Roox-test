@@ -1,0 +1,39 @@
+.users {
+    flex-grow: 1;
+    padding-top: 19px;
+    padding-left: 31px;
+    padding-right: 59px;
+}
+
+.users-title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.users-list__item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #F3F3F3;
+    border-radius: 8px;
+}
+
+.list-item a {
+    padding-top: 62px;
+}
+
+.list-item__details p {
+    color: #a3a3a3;
+}
+
+.list-item__details span {
+    margin-left: 5px;
+    color: #000;
+    font-weight: 700;
+}
+
+.users-count {
+    text-align: right;
+}

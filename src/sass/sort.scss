@@ -1,0 +1,32 @@
+.sort {
+    display: flex;
+    flex-direction: column;
+    padding-top: 35px;
+    padding-left: 20px;
+    width: 152px;
+    background-color: #BDBDBD;
+}
+
+.sort-title {
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.sort-city,
+.sort-company {
+    height: 24px;
+    color: #fff;
+    background-color: #4B51EF;
+    border: none;
+    border-radius: 5px;
+}
+
+.sort-city {
+    margin-bottom: 10px;
+    width: 86px;
+}
+
+.sort-company {
+    width: 105px;
+}

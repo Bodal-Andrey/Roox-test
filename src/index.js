@@ -1,4 +1,9 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import App from '../src/components/app';
 import './sass/style.scss';
 
-const bodyElement = document.querySelector(`body`);
-bodyElement.textContent = `Hello, hello, hello!`;
+ReactDOM.render(
+        <App />,
+    document.getElementById(`root`)
+);
