@@ -9,6 +9,10 @@ const ActionCreator = {
         type: ActionType.CHANGE_LOAD_STATUS,
         payload: loadStatus
     }),
+    changeSort: (sortType) => ({
+        type: ActionType.CHANGE_SORT,
+        payload: sortType
+    }),
 };
 
 export default ActionCreator;

@@ -1,10 +1,12 @@
 import { extend } from "../utils";
 import ActionCreator from "./actions";
 import ActionType from "./types";
+import { SortingTypes } from '../const';
 
 const initialState = {
     users: [],
     loadStatus: false,
+    sortType: SortingTypes.RANDOM,
 };
 
 const Operation = {
@@ -12,6 +14,7 @@ const Operation = {
         return api.get(`/users`)
             .then((data) => {
                 dispatch(ActionCreator.loadUsers(data.data));
+                dispatch(ActionCreator.changeSort(SortingTypes.RANDOM));
                 dispatch(ActionCreator.changeLoadStatus(true));
             });
     },
@@ -23,6 +26,8 @@ const reducer = (state = initialState, action) => {
             return extend(state, { users: action.payload });
         case ActionType.CHANGE_LOAD_STATUS:
             return extend(state, { loadStatus: action.payload });
+        case ActionType.CHANGE_SORT:
+            return extend(state, { sortType: action.payload });
         default:
             return state;
     }

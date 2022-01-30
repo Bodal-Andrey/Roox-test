@@ -13,7 +13,7 @@ const UsersList = ({ users }) => {
                     />
                 )}
             </ul>
-            <p className='users-count'>Найдено 10 пользователей</p>
+            <p className='users-count'>Найдено {users.length} пользователей</p>
         </section>
     );
 };
