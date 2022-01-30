@@ -1,5 +1,5 @@
 const AppRoute = {
-  ROOT: `/`,
+  ROOT: `/users`,
 };
 
 export {
