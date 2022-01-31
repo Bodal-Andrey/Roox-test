@@ -59,3 +59,11 @@
     border: none;
     border-radius: 5px;
 }
+
+input:required:valid {
+    border: 1px solid #d8d8d8;
+}
+
+input:required:invalid {
+    border: 1px solid #d91313;
+}

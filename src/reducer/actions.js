@@ -13,6 +13,10 @@ const ActionCreator = {
         type: ActionType.CHANGE_SORT,
         payload: sortType
     }),
+    loadUserDetails: (data) => ({
+        type: ActionType.LOAD_USER_DETAILS,
+        payload: data
+    }),
 };
 
 export default ActionCreator;

@@ -36,5 +36,5 @@ const sortingUsers = (users, sortType) => {
 
 export {
     extend,
-    sortingUsers
+    sortingUsers,
 };
