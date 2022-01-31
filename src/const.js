@@ -1,5 +1,6 @@
 const AppRoute = {
   ROOT: `/`,
+  FORM: `/form`,
 };
 
 const SortingTypes = {

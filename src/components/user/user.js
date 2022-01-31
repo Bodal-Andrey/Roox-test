@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+import { AppRoute } from '../../const';
 
 const User = ({ user }) => {
     return (
@@ -8,7 +10,7 @@ const User = ({ user }) => {
                 <p>город: <span>{user.address.city}</span></p>
                 <p>компания: <span>{user.company.name}</span></p>
             </div>
-            <a href='#'>Подробнее</a>
+            <Link to={AppRoute.FORM} href='#'>Подробнее</Link>
         </li>
     );
 };
