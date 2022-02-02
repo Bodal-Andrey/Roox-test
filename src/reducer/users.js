@@ -8,6 +8,7 @@ const initialState = {
     loadStatus: false,
     sortType: SortingTypes.RANDOM,
     userDetails: {},
+    userData: {},
 };
 
 const Operation = {
@@ -31,6 +32,8 @@ const reducer = (state = initialState, action) => {
             return extend(state, { sortType: action.payload });
         case ActionType.LOAD_USER_DETAILS:
             return extend(state, { userDetails: action.payload });
+        case ActionType.UPDATE_USER_DATA:
+            return extend(state, { userData: action.payload });
         default:
             return state;
     }

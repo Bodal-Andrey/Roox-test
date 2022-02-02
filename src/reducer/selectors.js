@@ -17,6 +17,10 @@ const getUserDetails = (state) => {
     return state.userDetails;
 };
 
+const getUserData = (state) => {
+    return state.userData;
+};
+
 const getSortedUsers = createSelector(
     getUsers,
     getSortType,
@@ -29,4 +33,5 @@ export {
     getSortedUsers,
     getSortType,
     getUserDetails,
+    getUserData,
 };

@@ -17,6 +17,10 @@ const ActionCreator = {
         type: ActionType.LOAD_USER_DETAILS,
         payload: data
     }),
+    updateUserData: (data) => ({
+        type: ActionType.UPDATE_USER_DATA,
+        payload: data
+    }),
 };
 
 export default ActionCreator;

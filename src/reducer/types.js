@@ -3,6 +3,7 @@ const ActionType = {
     CHANGE_LOAD_STATUS: `CHANGE_LOAD_STATUS`,
     CHANGE_SORT: `CHANGE_SORT`,
     LOAD_USER_DETAILS: `LOAD_USER_DETAILS`,
+    UPDATE_USER_DATA: `UPDATE_USER_DATA`,
 };
 
 export default ActionType;

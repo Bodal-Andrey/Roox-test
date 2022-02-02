@@ -1,14 +1,61 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getUserDetails } from '../../reducer/selectors';
-
+import { getUserDetails, getUserData } from '../../reducer/selectors';
+import ActionCreator from '../../reducer/actions';
 class Form extends React.Component {
+    state = {
+        name: this.props.user.name,
+        username: this.props.user.username,
+        email: this.props.user.email,
+        address: {
+            street: this.props.user.address.street,
+            city: this.props.user.address.city,
+            zipcode: this.props.user.address.zipcode,
+        },
+        phone: this.props.user.phone,
+        website: this.props.user.website,
+    }
+
+    nameRef = React.createRef();
+    usernameRef = React.createRef();
+    emailRef = React.createRef();
+    streetRef = React.createRef();
+    cityRef = React.createRef();
+    zipcodeRef = React.createRef();
+    phoneRef = React.createRef();
+    websiteRef = React.createRef();
+
     removeDesabled() {
         document.querySelector('.form-user__elements').removeAttribute('disabled');
     };
-    
+
+    handleInputChange = () => {
+        this.setState({
+            name: this.nameRef.current.value,
+            username: this.usernameRef.current.value,
+            email: this.emailRef.current.value,
+            address: {
+                street: this.streetRef.current.value,
+                city: this.cityRef.current.value,
+                zipcode: this.zipcodeRef.current.value,
+            },
+            phone: this.phoneRef.current.value,
+            website: this.websiteRef.current.value,
+        });
+    }
+
+    handlePostForm = (evt) => {
+        evt.preventDefault();
+        const { updateForm } = this.props;
+        updateForm(this.state);
+    }
+
     render() {
-        const { user } = this.props;
+        const { name, username, email, address, phone, website } = this.state;
+        const { street, city, zipcode } = address;
+        const { userData } = this.props;
+
+        console.log(userData)
 
         return (
             <section className='form'>
@@ -19,25 +66,25 @@ class Form extends React.Component {
                 <form className='form-user'>
                     <fieldset className='form-user__elements' disabled='disabled'>
                         <label className="form-user__label" htmlFor="name">Name</label>
-                        <input id="name" name="name" type="text" value={user.name} required />
-                        <label className="form-user__label" htmlFor="user-name">User name</label>
-                        <input id="user-name" name="user-name" type="text" placeholder={user.username} required />
-                        <label className="form-user__label" htmlFor="email">Name</label>
-                        <input id="email" name="email" type="email" placeholder={user.email} required />
+                        <input ref={this.nameRef} onChange={this.handleInputChange} id="name" name="name" type="text" defaultValue={name} required />
+                        <label className="form-user__label" htmlFor="username">User name</label>
+                        <input ref={this.usernameRef} onChange={this.handleInputChange} id="username" name="username" type="text" defaultValue={username} required />
+                        <label className="form-user__label" htmlFor="email">Email</label>
+                        <input ref={this.emailRef} onChange={this.handleInputChange} id="email" name="email" type="email" defaultValue={email} required />
                         <label className="form-user__label" htmlFor="street">Street</label>
-                        <input id="street" name="street" type="text" placeholder={user.address.street} required />
+                        <input ref={this.streetRef} onChange={this.handleInputChange} id="street" name="street" type="text" defaultValue={street} required />
                         <label className="form-user__label" htmlFor="city">City</label>
-                        <input id="city" name="city" type="text" placeholder={user.address.city} required />
+                        <input ref={this.cityRef} onChange={this.handleInputChange} id="city" name="city" type="text" defaultValue={city} required />
                         <label className="form-user__label" htmlFor="zipcode">Zip code</label>
-                        <input id="zipcode" name="zipcode" type="number" placeholder={user.address.zipcode} required />
+                        <input ref={this.zipcodeRef} onChange={this.handleInputChange} id="zipcode" name="zipcode" type="text" defaultValue={zipcode} required />
                         <label className="form-user__label" htmlFor="phone">Phone</label>
-                        <input id="phone" name="phone" type="tel" placeholder={user.phone} required />
+                        <input ref={this.phoneRef} onChange={this.handleInputChange} id="phone" name="phone" type="tel" defaultValue={phone} required />
                         <label className="form-user__label" htmlFor="web">Website</label>
-                        <input id="web" name="web" type="text" placeholder={user.website} required />
+                        <input ref={this.websiteRef} onChange={this.handleInputChange} id="web" name="web" type="text" defaultValue={website} required />
                         <label className="ad-form__label" htmlFor="comment">Comment</label>
                         <textarea id="comment" name="comment" cols="30" rows="4"></textarea>
                     </fieldset>
-                    <button className='form-button submit-button' type='submit'>Отправить</button>
+                    <button onClick={this.handlePostForm} className='form-button submit-button' type='submit'>Отправить</button>
                 </form>
             </section>
         );
@@ -46,6 +93,11 @@ class Form extends React.Component {
 
 const mapStateToProps = (state) => ({
     user: getUserDetails(state),
+    userData: getUserData(state),
 });
 
-export default connect(mapStateToProps)(Form);
+const mapDispatchToProps = (dispatch) => ({
+    updateForm: (data) => dispatch(ActionCreator.updateUserData(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
