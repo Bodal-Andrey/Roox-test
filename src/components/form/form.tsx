@@ -1,8 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { getUserDetails, getUserData } from '../../reducer/selectors';
 import ActionCreator from '../../reducer/actions';
-class Form extends React.Component {
+import { IUser } from '../../types';
+
+interface Props {
+    user: IUser,
+    updateForm: (data: object) => void,
+    userData: IUser,
+};
+
+class Form extends React.Component<Props, IUser> {
     state = {
         name: this.props.user.name,
         username: this.props.user.username,
@@ -16,14 +24,14 @@ class Form extends React.Component {
         website: this.props.user.website,
     }
 
-    nameRef = React.createRef();
-    usernameRef = React.createRef();
-    emailRef = React.createRef();
-    streetRef = React.createRef();
-    cityRef = React.createRef();
-    zipcodeRef = React.createRef();
-    phoneRef = React.createRef();
-    websiteRef = React.createRef();
+    nameRef: React.RefObject<HTMLInputElement> = React.createRef();
+    usernameRef: React.RefObject<HTMLInputElement> = React.createRef();
+    emailRef: React.RefObject<HTMLInputElement> = React.createRef();
+    streetRef: React.RefObject<HTMLInputElement> = React.createRef();
+    cityRef: React.RefObject<HTMLInputElement> = React.createRef();
+    zipcodeRef: React.RefObject<HTMLInputElement> = React.createRef();
+    phoneRef: React.RefObject<HTMLInputElement> = React.createRef();
+    websiteRef: React.RefObject<HTMLInputElement> = React.createRef();
 
     removeDesabled() {
         document.querySelector('.form-user__elements').removeAttribute('disabled');
@@ -44,7 +52,7 @@ class Form extends React.Component {
         });
     }
 
-    handlePostForm = (evt) => {
+    handlePostForm = (evt: any) => {
         evt.preventDefault();
         const { updateForm } = this.props;
         updateForm(this.state);
@@ -64,7 +72,7 @@ class Form extends React.Component {
                     <button onClick={this.removeDesabled} className='form-title__button edit-button'>Редактировать</button>
                 </div>
                 <form className='form-user'>
-                    <fieldset className='form-user__elements' disabled='disabled'>
+                    <fieldset className='form-user__elements' disabled={true}>
                         <label className="form-user__label" htmlFor="name">Name</label>
                         <input ref={this.nameRef} onChange={this.handleInputChange} id="name" name="name" type="text" defaultValue={name} required />
                         <label className="form-user__label" htmlFor="username">User name</label>
@@ -82,7 +90,7 @@ class Form extends React.Component {
                         <label className="form-user__label" htmlFor="web">Website</label>
                         <input ref={this.websiteRef} onChange={this.handleInputChange} id="web" name="web" type="text" defaultValue={website} required />
                         <label className="ad-form__label" htmlFor="comment">Comment</label>
-                        <textarea id="comment" name="comment" cols="30" rows="4"></textarea>
+                        <textarea id="comment" name="comment" cols={30} rows={4}></textarea>
                     </fieldset>
                     <button onClick={this.handlePostForm} className='form-button submit-button' type='submit'>Отправить</button>
                 </form>
@@ -97,7 +105,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    updateForm: (data) => dispatch(ActionCreator.updateUserData(data)),
+    updateForm: (data: object) => dispatch(ActionCreator.updateUserData(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

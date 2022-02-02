@@ -1,7 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 import User from '../user';
 
-const UsersList = ({ users }) => {
+interface Props {
+    users: [
+        user: {
+            id: number
+        }
+    ],
+};
+
+const UsersList: React.FC<Props> = ({ users }) => {
     return (
         <section className='users'>
             <h2 className='users-title'>Список пользователей</h2>

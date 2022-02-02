@@ -1,10 +1,23 @@
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { AppRoute } from '../../const';
 import ActionCreator from '../../reducer/actions';
 
-const User = ({ user, onDetailClick }) => {
+interface Props {
+    user: {
+        name: string,
+        address: {
+            city: string,
+        }
+        company: {
+            name: string,
+        }
+    },
+    onDetailClick: (user: object) => void,
+};
+
+const User: React.FC<Props> = ({ user, onDetailClick }) => {
     return (
         <li className='users-list__item list-item'>
             <div className='list-item__details'>
@@ -18,7 +31,7 @@ const User = ({ user, onDetailClick }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    onDetailClick(user) {
+    onDetailClick(user: object) {
         dispatch(ActionCreator.loadUserDetails(user));
     },
 });

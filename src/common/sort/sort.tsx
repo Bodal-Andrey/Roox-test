@@ -1,10 +1,14 @@
-import React from "react";
+import * as React from "react";
 import { connect } from "react-redux";
 import { SortingTypes } from '../../const';
 import { getSortType } from '../../reducer/selectors';
 import ActionCreator from '../../reducer/actions';
 
-const Sort = ({ onSortButtonClick }) => {
+interface Props {
+    onSortButtonClick: (sortType: string) => void,
+};
+
+const Sort: React.FC<Props> = ({ onSortButtonClick }) => {
     return (
         <div className='sort'>
             <h2 className='sort-title'>Сортировка</h2>
@@ -15,7 +19,7 @@ const Sort = ({ onSortButtonClick }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    onSortButtonClick: (sortType) => dispatch(ActionCreator.changeSort(sortType))
+    onSortButtonClick: (sortType: string) => dispatch(ActionCreator.changeSort(sortType))
 });
 
 export default connect(null, mapDispatchToProps)(Sort);
